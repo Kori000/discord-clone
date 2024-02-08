@@ -5,6 +5,7 @@ import { db } from '@/lib/db'
 export const initialProfile = async () => {
   const user = await currentUser()
 
+  // 没登录就跳转到登录页面
   if (!user) {
     return redirectToSignIn()
   }
@@ -15,6 +16,7 @@ export const initialProfile = async () => {
     },
   })
 
+  // 有给信息
   if (profile) {
     return profile
   }

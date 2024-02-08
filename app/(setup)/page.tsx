@@ -1,8 +1,10 @@
+import { InitialModal } from '@/components/modals/initial-modal'
 import { db } from '@/lib/db'
 import { initialProfile } from '@/lib/initial-profile'
 import { redirect } from 'next/navigation'
 
-const SetupPage = async () => {
+export const SetUpPage = async () => {
+  // 获取用户信息
   const profile = await initialProfile()
 
   const server = await db.server.findFirst({
@@ -19,7 +21,7 @@ const SetupPage = async () => {
     return redirect(`/server/${server.id}`)
   }
 
-  return <div>Create a Server</div>
+  return <InitialModal />
 }
 
-export default SetupPage
+export default SetUpPage
