@@ -24,6 +24,7 @@ export const FileUpload = ({ onChange, value, endpoint }: FileUploadProps) => {
           fill
           src={value}
           alt='Upload'
+          sizes='80'
           className='rounded-full '
         />
         <button
