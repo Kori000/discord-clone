@@ -9,7 +9,7 @@ export const SetUpPage = async () => {
 
   const server = await db.server.findFirst({
     where: {
-      mermbers: {
+      members: {
         some: {
           profileId: profile.id,
         },
