@@ -149,7 +149,7 @@ export const MembersModal = () => {
                             <DropdownMenuItem
                               onClick={() => onRoleChange(member.id, 'GUEST')}
                             >
-                              <Shield className='h-4 w-4 mr-2 ' />
+                              <Shield className='h-4 w-4 mr-2  ' />
                               Guest
                               {member.role === 'GUEST' && (
                                 <Check className='w-4 h-4 ml-auto ' />
@@ -158,7 +158,7 @@ export const MembersModal = () => {
                             <DropdownMenuItem
                               onClick={() => onRoleChange(member.id, 'MODERATOR')}
                             >
-                              <ShieldCheck className='h-4 w-4 mr-2 ' />
+                              <ShieldCheck className='h-4 w-4 mr-2 text-indigo-500 ' />
                               Moderator
                               {member.role === 'MODERATOR' && (
                                 <Check className='w-4 h-4 ml-auto ' />
