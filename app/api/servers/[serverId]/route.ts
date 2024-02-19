@@ -8,6 +8,8 @@ export async function PATCH(req: Request, { params }: { params: { serverId: stri
   try {
     const profile = await currentProfile()
 
+    const { name, imageUrl } = await req.json()
+
     if (!profile) {
       return new NextResponse('Unauthorized', { status: 401 })
     }
@@ -22,13 +24,14 @@ export async function PATCH(req: Request, { params }: { params: { serverId: stri
         profileId: profile.id,
       },
       data: {
-        inviteCode: uuidv4(),
+        name,
+        imageUrl,
       },
     })
 
     return NextResponse.json(server)
   } catch (error) {
-    console.log('[SERVERS_POST]', error)
+    console.log('[SERVERS_ID_PATCH]', error)
     return new NextResponse('Internal Error', { status: 500 })
   }
 }
