@@ -51,6 +51,10 @@ export const ServerSearch = ({ data }: ServerSearchProps) => {
     if (type === 'member') {
       return router.push(`/servers/${params.serverId}/conversations/${id}`)
     }
+
+    if (type === 'channel') {
+      return router.push(`/servers/${params.serverId}/channels/${id}`)
+    }
   }
   return (
     <>
@@ -84,7 +88,15 @@ export const ServerSearch = ({ data }: ServerSearchProps) => {
               >
                 {data?.map(({ id, icon, name }) => {
                   return (
-                    <CommandItem key={id}>
+                    <CommandItem
+                      key={id}
+                      onSelect={() =>
+                        onClick({
+                          id,
+                          type,
+                        })
+                      }
+                    >
                       {icon}
                       <span>{name}</span>
                     </CommandItem>
