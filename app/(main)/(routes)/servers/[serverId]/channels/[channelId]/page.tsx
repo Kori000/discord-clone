@@ -26,6 +26,9 @@ const ChannelIdPage = async ({ params }: ChannelIdPageProps) => {
     },
   })
 
+  /**
+   * 自己
+   */
   const member = await db.member.findFirst({
     where: {
       serverId: params.serverId,

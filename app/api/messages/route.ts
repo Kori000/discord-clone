@@ -42,7 +42,7 @@ export async function GET(req: Request) {
           },
         },
         orderBy: {
-          createAt: 'desc',
+          createdAt: 'desc',
         },
       })
     } else {
@@ -59,11 +59,10 @@ export async function GET(req: Request) {
           },
         },
         orderBy: {
-          createAt: 'desc',
+          createdAt: 'desc',
         },
       })
     }
-    console.log(messages)
 
     let nextCursor = null
 
