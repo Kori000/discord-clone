@@ -7,6 +7,7 @@ import { Loader2, ServerCrash } from 'lucide-react'
 import { Fragment } from 'react'
 import { ChatItem } from '@/components/chat/chat-item'
 import { format } from 'date-fns'
+import { useChatSocket } from '@/hooks/use-chat-socket'
 
 const DATE_FORMAT = 'yyyy-MM-dd HH:mm:ss'
 
@@ -40,6 +41,8 @@ export const ChatMessages = ({
   type,
 }: ChatMessagesProps) => {
   const queryKey = `chat:${chatId}`
+  const addKey = `chat:${chatId}:messages`
+  const updateKey = `chat:${chatId}:messages:update`
 
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, status } = useChatQuery({
     queryKey,
@@ -47,6 +50,9 @@ export const ChatMessages = ({
     paramKey,
     paramValue,
   })
+
+  // 启动 socket 监听服务 key
+  useChatSocket({ queryKey, addKey, updateKey })
 
   if (status === 'pending') {
     return (
