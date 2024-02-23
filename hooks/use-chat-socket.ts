@@ -22,6 +22,29 @@ export const useChatSocket = ({ addKey, updateKey, queryKey }: ChatSocketProps) 
   useEffect(() => {
     if (!socket) return
 
+    socket.on(addKey, (message: MessageWithMemberWithProfile) => {
+      console.log(queryKey)
+      queryClient.setQueryData([queryKey], (oldData: any) => {
+        if (!oldData || !oldData.pages || oldData.pages.length === 0) {
+          return oldData
+        }
+
+        const newData = [...oldData.pages]
+
+        console.log(message)
+
+        newData[0] = {
+          ...newData[0],
+          items: [message, ...newData[0].items],
+        }
+
+        return {
+          ...oldData,
+          pages: newData,
+        }
+      })
+    })
+
     socket.on(updateKey, (message: MessageWithMemberWithProfile) => {
       queryClient.setQueryData([queryKey], (oldData: any) => {
         if (!oldData || !oldData.pages || oldData.pages.length === 0) {
@@ -39,26 +62,7 @@ export const useChatSocket = ({ addKey, updateKey, queryKey }: ChatSocketProps) 
             }),
           }
         })
-
-        return {
-          ...oldData,
-          pages: newData,
-        }
-      })
-    })
-
-    socket.on(addKey, (message: MessageWithMemberWithProfile) => {
-      queryClient.setQueryData([queryKey], (oldData: any) => {
-        if (!oldData || !oldData.pages || oldData.pages.length === 0) {
-          return oldData
-        }
-
-        const newData = [...oldData.pages]
-
-        newData[0] = {
-          ...newData[0],
-          items: [message, ...newData[0].items],
-        }
+        console.log(newData)
 
         return {
           ...oldData,
