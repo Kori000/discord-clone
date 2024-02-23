@@ -20,7 +20,7 @@ type MessageWithMemberWithProfile = Message & {
 
 interface ChatMessagesProps {
   name: string
-  member: Member
+  member: Member // 自己
   chatId: string
   apiUrl: string
   socketUrl: string
